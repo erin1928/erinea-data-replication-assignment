@@ -1,0 +1,11 @@
+---
+title: "Data Replication"
+author: "Erin Anderson"
+date: "`r Sys.Date()`"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+![Paper pdf](/Users/erin/desktop/Australian Journal of Ecology - 2009 - Cunningham - Quantifying observer heterogeneity in bird counts.pdf)
