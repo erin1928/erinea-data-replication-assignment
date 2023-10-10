@@ -8,4 +8,9 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-![Paper pdf](/Users/erin/desktop/Australian Journal of Ecology - 2009 - Cunningham - Quantifying observer heterogeneity in bird counts.pdf)
+![Birds pdf](/Users/erin/desktop/Australian Journal of Ecology - 2009 - Cunningham - Quantifying observer heterogeneity in bird counts.pdf)
+
+![Bees pdf](/Users/erin/desktop/honey_bees.pdf)
+
+![Flower color pdf](/Users/erin/desktop/flower_color.pdf)
+
