@@ -8,9 +8,14 @@ output: html_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
-![Birds pdf](/Users/erin/desktop/Australian Journal of Ecology - 2009 - Cunningham - Quantifying observer heterogeneity in bird counts.pdf)
 
-![Bees pdf](/Users/erin/desktop/honey_bees.pdf)
+!["Bee flower consistency"](/Users/erin/desktop/bee_flower_consistency.pdf)
 
-![Flower color pdf](/Users/erin/desktop/flower_color.pdf)
+
+## chi squared test, p value, stray from normal
+```{r csv, include=TRUE}
+bee_data <- read.csv("~/Desktop/Pollen_id_Yourstone_et_al_2023.csv", sep = '\t', header = TRUE, stringsAsFactors = FALSE)
+bee_data
+```
+
 
