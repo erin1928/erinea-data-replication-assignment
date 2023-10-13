@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-!["Bee flower consistency"](/Users/erin/desktop/bee_flower_consistency.pdf)
+!["Bee flower constancy"](/Users/erin/desktop/bee_flower_consistency.pdf)
 
 
 ## chi squared test, p value, stray from normal
