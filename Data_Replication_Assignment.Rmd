@@ -19,7 +19,7 @@ bee_data
 head(bee_data)
 ```
 ```{r calling rows, include=TRUE}
-Prunus <- sample(bee_data$P_Prunus.group)
+Prunus <- as.numeric(sample(bee_data$P_Prunus.group))
 Prunus
 Brassicaceae <- sample(bee_data$P_Brassicaceae)
 Brassicaceae
@@ -55,3 +55,7 @@ percentage_Phacelia<- (Phacelia / total_species_count)*100
 percentage_Phacelia
 ```
 
+```{r calculating proportions, include=TRUE}
+Prunus <- as.numeric(sample(bee_data$P_Prunus.group))
+Prunus
+```
