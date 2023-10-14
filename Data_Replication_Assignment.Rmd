@@ -18,4 +18,40 @@ bee_data <- read.csv("~/Desktop/Pollen_id_Yourstone_et_al_2023 copy.csv", sep = 
 bee_data
 head(bee_data)
 ```
+```{r calling rows, include=TRUE}
+Prunus <- sample(bee_data$P_Prunus.group)
+Prunus
+Brassicaceae <- sample(bee_data$P_Brassicaceae)
+Brassicaceae
+Lamium <- sample(bee_data$P_Lamium)
+Lamium
+Acer <- sample(bee_data$P_Acer)
+Acer
+Lonicera <- sample(bee_data$P_Lonicera)
+Lonicera
+Salix <- sample(bee_data$P_Salix)
+Salix
+Prunus_Group_B <- sample(bee_data$P_Prunus.groupB)
+Prunus_Group_B
+Papaver <- sample(bee_data$P_Papaver)
+Papaver
+Cytisus <- sample(bee_data$P_Cytisus)
+Cytisus
+Trifolium_repens <- sample(bee_data$P_Trifolium.repens.group)
+Aesculus <- sample(bee_data$P_Aesculus)
+Aesculus
+Pulmonaria_Group <- sample(bee_data$P_Pulmonaria.group)
+Pulmonaria_Group
+Laburnum <- sample(bee_data$P_Laburnum)
+Laburnum
+Phacelia <- sample(bee_data$P_Phacelia)
+Phacelia
+```
+
+```{r calculating proportions, include=TRUE}
+total_species_count <- (Phacelia + Laburnum + Pulmonaria_Group + Aesculus + Cytisus + Papaver + Prunus_Group_B + Salix + Lonicera + Acer + Lamium + Brassicaceae + Prunus)
+total_species_count
+percentage_Phacelia<- (Phacelia / total_species_count)*100
+percentage_Phacelia
+```
 
