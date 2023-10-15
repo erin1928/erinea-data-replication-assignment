@@ -14,12 +14,13 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## chi squared test, p value, stray from normal
 ```{r csv, include=TRUE}
-bee_data <- read.csv("~/Desktop/Pollen_id_Yourstone_et_al_2023 copy.csv", sep = ';', header = TRUE, stringsAsFactors = FALSE)
+bee_data <- read.csv("~/Desktop/Pollen_id_Yourstone_et_al_2023 copy.csv", sep = ';', header = TRUE, stringsAsFactors = TRUE)
 bee_data
 head(bee_data)
+df_bee_data <- data.frame(bee_data)
 ```
 ```{r calling rows, include=TRUE}
-Prunus <- as.numeric(sample(bee_data$P_Prunus.group))
+Prunus <- sample(bee_data$P_Prunus.group)
 Prunus
 Brassicaceae <- sample(bee_data$P_Brassicaceae)
 Brassicaceae
@@ -56,6 +57,7 @@ percentage_Phacelia
 ```
 
 ```{r calculating proportions, include=TRUE}
-Prunus <- as.numeric(sample(bee_data$P_Prunus.group))
+Prunus <- sample(df_bee_data$P_Prunus.group)
 Prunus
+mean(Prunus)
 ```
