@@ -14,7 +14,7 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## chi squared test, p value, stray from normal
 ```{r csv, include=TRUE}
-bee_data <- read.csv("~/Desktop/Pollen_id_Yourstone_et_al_2023 copy.csv", sep = ';', header = TRUE, stringsAsFactors = TRUE)
+bee_data <- read.csv("bee_data.csv", sep = ',', header = TRUE, stringsAsFactors = TRUE)
 bee_data
 head(bee_data)
 df_bee_data <- data.frame(bee_data)
