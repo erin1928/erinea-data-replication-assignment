@@ -19,45 +19,89 @@ bee_data
 head(bee_data)
 df_bee_data <- data.frame(bee_data)
 ```
-```{r calling rows, include=TRUE}
-Prunus <- sample(bee_data$P_Prunus.group)
+```{r calling rows, include=FALSE}
+Prunus <- (bee_data$P_Prunus.group)
 Prunus
-Brassicaceae <- sample(bee_data$P_Brassicaceae)
+Brassicaceae <- (bee_data$P_Brassicaceae)
 Brassicaceae
-Lamium <- sample(bee_data$P_Lamium)
+Lamium <- (bee_data$P_Lamium)
 Lamium
-Acer <- sample(bee_data$P_Acer)
+Acer <- (bee_data$P_Acer)
 Acer
-Lonicera <- sample(bee_data$P_Lonicera)
+Lonicera <- (bee_data$P_Lonicera)
 Lonicera
-Salix <- sample(bee_data$P_Salix)
+Salix <- (bee_data$P_Salix)
 Salix
 Prunus_Group_B <- sample(bee_data$P_Prunus.groupB)
 Prunus_Group_B
-Papaver <- sample(bee_data$P_Papaver)
+Papaver <- (bee_data$P_Papaver)
 Papaver
-Cytisus <- sample(bee_data$P_Cytisus)
+Cytisus <- (bee_data$P_Cytisus)
 Cytisus
-Trifolium_repens <- sample(bee_data$P_Trifolium.repens.group)
-Aesculus <- sample(bee_data$P_Aesculus)
+Trifolium_repens <- (bee_data$P_Trifolium.repens.group)
+Trifolium_repens
+Aesculus <- (bee_data$P_Aesculus)
 Aesculus
-Pulmonaria_Group <- sample(bee_data$P_Pulmonaria.group)
+Pulmonaria_Group <- (bee_data$P_Pulmonaria.group)
 Pulmonaria_Group
-Laburnum <- sample(bee_data$P_Laburnum)
+Laburnum <- (bee_data$P_Laburnum)
 Laburnum
-Phacelia <- sample(bee_data$P_Phacelia)
+Phacelia <- (bee_data$P_Phacelia)
 Phacelia
 ```
 
+
 ```{r calculating proportions, include=TRUE}
-total_species_count <- (Phacelia + Laburnum + Pulmonaria_Group + Aesculus + Cytisus + Papaver + Prunus_Group_B + Salix + Lonicera + Acer + Lamium + Brassicaceae + Prunus)
-total_species_count
-percentage_Phacelia<- (Phacelia / total_species_count)*100
-percentage_Phacelia
+mean(Prunus)
+mean(Brassicaceae)
+mean(Lamium)
+mean(Acer)
+mean(Lonicera)
+mean(Salix)
+mean(Prunus_Group_B)
+mean(Papaver)
+mean(Cytisus)
+mean(Trifolium_repens)
+mean(Aesculus)
+mean(Pulmonaria_Group)
+mean(Laburnum)
+mean(Phacelia)
 ```
 
 ```{r calculating proportions, include=TRUE}
-Prunus <- sample(df_bee_data$P_Prunus.group)
-Prunus
-mean(Prunus)
+total_species_count <- (mean(Phacelia) + mean(Laburnum) + mean(Pulmonaria_Group) + mean(Aesculus) + mean(Cytisus) + mean(Papaver) + mean(Prunus_Group_B) + mean(Salix) + mean(Lonicera) + mean(Acer) + mean(Lamium) + mean(Brassicaceae) + mean(Prunus))
+total_species_count
+percentage_Phacelia<- (mean(Phacelia) / total_species_count)
+percentage_Phacelia
+percentage_Laburnum <- (mean(Laburnum) / total_species_count)
+percentage_Laburnum
+percentage_Pulmonaria_Group <- (mean(Pulmonaria_Group) / total_species_count)
+percentage_Pulmonaria_Group
+percentage_Aesculus <- (mean(Aesculus) / total_species_count)
+percentage_Aesculus
+percentage_Trifolium_repens <- (mean(Trifolium_repens) / total_species_count)
+percentage_Trifolium_repens
+percentage_Cytisus <- (mean(Cytisus) / total_species_count)
+percentage_Cytisus
+percentage_Papaver <- (mean(Papaver) / total_species_count)
+percentage_Papaver
+percentage_Prunus_Group_B <- (mean(Prunus_Group_B) / total_species_count)
+percentage_Prunus_Group_B
+percentage_Salix <- (mean(Salix) / total_species_count)
+percentage_Salix
+percentage_Lonicera <- (mean(Lonicera) / total_species_count)
+percentage_Lonicera
+percentage_Acer <- (mean(Acer) / total_species_count)
+percentage_Acer
+percentage_Lamium <- (mean(Lamium) / total_species_count)
+percentage_Lamium
+percentage_Brassicaceae <- (mean(Brassicaceae) / total_species_count)
+percentage_Brassicaceae
+percentage_Prunus <- (mean(Prunus) / total_species_count)
+percentage_Prunus
+```
+
+```{r bar chart, include=TRUE}
+library(ggplot2)
+
 ```
