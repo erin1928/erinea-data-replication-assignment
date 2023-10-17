@@ -104,6 +104,6 @@ percentage_Prunus
 ```{r bar chart, include=TRUE}
 means <- c(mean(Prunus), mean(Brassicaceae), mean(Lamium), mean(Acer), mean(Lonicera), mean(Salix), mean(Prunus_Group_B), mean(Papaver), mean(Cytisus), mean(Trifolium_repens), mean(Aesculus), mean(Pulmonaria_Group), mean(Laburnum), mean(Phacelia))
 Flower_species <- c(Prunus, Brassicaceae, Lamium, Acer, Lonicera, Salix, Prunus_Group_B, Papaver, Cytisus, Trifolium_repens, Aesculus, Pulmonaria_Group, Laburnum,  Phacelia)
-barplot(means, ylim = c(0.00, 0.20), space = 0.1, xlab = "Flower Species",
+barplot(means, ylim = c(0.00, 0.20), space = 0.05, xlab = "Flower Species",
     ylab = "Pollen Proportion", main = "Pollen Proportion vs. Flower Species")
 ```
