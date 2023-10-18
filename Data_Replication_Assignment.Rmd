@@ -110,7 +110,9 @@ library(RColorBrewer)
 coul <- brewer.pal(14, "Set3")
 #This sets rainbow colors for my graph
 par(mar=c(8,4,4,1)+.1)
+#This changes the margins on my graph, the first one deals with the bottom allowing me to fit all the words onto the chart
 barplot(means, ylim = c(0.00, 0.20), names.arg = Flower_species, las = 2, space = 0.05, xlab = " ", ylab = "Pollen Proportion", main = "Pollen Proportion vs. Flower Species", col=coul, cex.axis=0.9)
+# las = 2 moves the x-axis labels vertical
 ```
 
 ![Original Chart](/Users/erin/desktop/Original Chart.png)
