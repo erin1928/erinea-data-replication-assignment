@@ -102,14 +102,13 @@ percentage_Prunus
 ```
 
 ```{r bar chart, include=TRUE}
+#setting a common numerical value to pull from in the y axis
 means <- c(mean(Prunus), mean(Brassicaceae), mean(Lamium), mean(Acer), mean(Lonicera), mean(Salix), mean(Prunus_Group_B), mean(Papaver), mean(Cytisus), mean(Trifolium_repens), mean(Aesculus), mean(Pulmonaria_Group), mean(Laburnum), mean(Phacelia))
+#Now using a character vector to pull names of each group on the x-axis
 Flower_species <- c("Prunus", "Brassicaceae", "Lamium", "Acer", "Lonicera", "Salix", "Prunus_Group_B", "Papaver", "Cytisus", "Trifolium_repens", "Aesculus", "Pulmonaria_Group", "Laburnum", "Phacelia")
-Flower_species
-means
 library(RColorBrewer)
 coul <- brewer.pal(14, "Set2")
-barplot(means, ylim = c(0.00, 0.20), names.arg = Flower_species, las = 2, space = 0.05, xlab = " ", ylab = " ", main = "Pollen Proportion vs. Flower Species", col=coul)
-#I want to add names.arg = Flower_species after c(0.00, 0.20) but R is telling me it's an incorrect number of names even though I have counted 14 means and 14 species names
-
-
+#This sets rainbow colors for my graph
+par(mar=c(8,4,4,1)+.1)
+barplot(means, ylim = c(0.00, 0.20), names.arg = Flower_species, las = 2, space = 0.05, xlab = " ", ylab = " ", main = "Pollen Proportion vs. Flower Species", col=coul, cex.axis=0.9)
 ```
