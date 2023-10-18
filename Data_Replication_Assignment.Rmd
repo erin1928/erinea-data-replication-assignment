@@ -103,9 +103,9 @@ percentage_Prunus
 
 ```{r bar chart, include=TRUE}
 means <- c(mean(Prunus), mean(Brassicaceae), mean(Lamium), mean(Acer), mean(Lonicera), mean(Salix), mean(Prunus_Group_B), mean(Papaver), mean(Cytisus), mean(Trifolium_repens), mean(Aesculus), mean(Pulmonaria_Group), mean(Laburnum), mean(Phacelia))
-Flower_species <- c("Prunus", "Brassicaceae", "Lamium", "Acer", "Lonicera", "Salix", "Prunus_Group_B", "Papaver, Cytisus", "Trifolium_repens", "Aesculus", "Pulmonaria_Group", "Laburnum",  "Phacelia")
-barplot(means, ylim = c(0.00, 0.20), space = 0.05, xlab = "Flower Species",
-    ylab = "Pollen Proportion", main = "Pollen Proportion vs. Flower Species")
-
+Flower_species <- c("Prunus", "Brassicaceae", "Lamium", "Acer", "Lonicera", "Salix", "Prunus_Group_B", "Papaver", "Cytisus", "Trifolium_repens", "Aesculus", "Pulmonaria_Group", "Laburnum", "Phacelia")
+Flower_species
+means
+barplot(means, ylim = c(0.00, 0.20), names.arg = Flower_species, space = 0.05, xlab = "Flower Species", ylab = "Pollen Proportion", main = "Pollen Proportion vs. Flower Species")
 #I want to add names.arg = Flower_species after c(0.00, 0.20) but R is telling me it's an incorrect number of names even though I have counted 14 means and 14 species names
 ```
