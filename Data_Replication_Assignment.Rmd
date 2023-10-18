@@ -106,6 +106,10 @@ means <- c(mean(Prunus), mean(Brassicaceae), mean(Lamium), mean(Acer), mean(Loni
 Flower_species <- c("Prunus", "Brassicaceae", "Lamium", "Acer", "Lonicera", "Salix", "Prunus_Group_B", "Papaver", "Cytisus", "Trifolium_repens", "Aesculus", "Pulmonaria_Group", "Laburnum", "Phacelia")
 Flower_species
 means
-barplot(means, ylim = c(0.00, 0.20), names.arg = Flower_species, space = 0.05, xlab = "Flower Species", ylab = "Pollen Proportion", main = "Pollen Proportion vs. Flower Species")
+library(RColorBrewer)
+coul <- brewer.pal(14, "Set2")
+barplot(means, ylim = c(0.00, 0.20), names.arg = Flower_species, las = 2, space = 0.05, xlab = " ", ylab = " ", main = "Pollen Proportion vs. Flower Species", col=coul)
 #I want to add names.arg = Flower_species after c(0.00, 0.20) but R is telling me it's an incorrect number of names even though I have counted 14 means and 14 species names
+
+
 ```
