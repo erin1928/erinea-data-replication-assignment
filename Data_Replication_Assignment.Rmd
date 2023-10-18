@@ -107,7 +107,7 @@ means <- c(mean(Prunus), mean(Brassicaceae), mean(Lamium), mean(Acer), mean(Loni
 #Now using a character vector to pull names of each group on the x-axis
 Flower_species <- c("Prunus", "Brassicaceae", "Lamium", "Acer", "Lonicera", "Salix", "Prunus_Group_B", "Papaver", "Cytisus", "Trifolium_repens", "Aesculus", "Pulmonaria_Group", "Laburnum", "Phacelia")
 library(RColorBrewer)
-coul <- brewer.pal(14, "Set2")
+coul <- brewer.pal(14, "Set3")
 #This sets rainbow colors for my graph
 par(mar=c(8,4,4,1)+.1)
 barplot(means, ylim = c(0.00, 0.20), names.arg = Flower_species, las = 2, space = 0.05, xlab = " ", ylab = "Pollen Proportion", main = "Pollen Proportion vs. Flower Species", col=coul, cex.axis=0.9)
