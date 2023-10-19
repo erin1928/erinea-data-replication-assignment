@@ -9,6 +9,13 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
+My study is testing the theory that bees prefer to frequent the same flowers, as opposed to visiting multiple different flowers in a patch. Sampling was done in Sweden with reared colonies of bees in an open fied. Bees were individually marked and ID'd and left to pollinate for 5 days at a time. After each period pollen was removed from the bees bodies and collected in jars. Mahcine learning was used to identify pollen samples from specific flowers which were identified in the field. After the program was run, individual pollen samples from ID'd bees were added to a csv file, noting each bee and where their pollen came from, and how much (in g) pollen they had extracted from the flower per trip. 
+
+I will be looking for you to clearly take your reader through all of the elements of data manipulation, analysis, and, where appropriate, visualization. You should provide as much coding detail, explanation, and output tables as necessary to compare your results to those published.
+
+Annotate your code well, and good luck!
+
+
 !["Bee flower constancy"](/Users/erin/desktop/bee_flower_consistency.pdf)
 
 
@@ -17,8 +24,8 @@ knitr::opts_chunk$set(echo = TRUE)
 bee_data <- read.csv("bee_data.csv", sep = ',', header = TRUE, stringsAsFactors = TRUE)
 bee_data
 head(bee_data)
-df_bee_data <- data.frame(bee_data)
 ```
+First we must identify and name all of the relevant columns within the csv. Here I am calling the columns of flower species that pollen was taken from, and giving them an easier and more memorable name to work with throughout the replication assignment.
 ```{r calling rows, include=FALSE}
 Prunus <- (bee_data$P_Prunus.group)
 Prunus
@@ -50,7 +57,7 @@ Phacelia <- (bee_data$P_Phacelia)
 Phacelia
 ```
 
-
+Now, in order to replicate our first figure, the mean weight (in grams) of each pollen type needs to be calculated. By using the mean() function I am directly calculating the averages of each column that I assigned in the previous step.
 ```{r calculating means, include=TRUE}
 mean(Prunus)
 mean(Brassicaceae)
