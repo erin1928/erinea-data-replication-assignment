@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-My study is testing the theory that bees prefer to frequent the same flowers, as opposed to visiting multiple different flowers in a patch. Sampling was done in Sweden with reared colonies of bees in an open field. Bees were individually marked and ID'd and left to pollinate for 5 days at a time. After each period pollen was removed from the bees bodies and collected in jars. Machine learning was used to identify pollen samples from specific flowers which were identified in the field. After the program was run, individual pollen samples from ID'd bees were added to a csv file, noting each bee and where their pollen came from, as well as how much (in g) of pollen they had extracted from the flower per trip. 
+My study is testing the theory that bees prefer to frequent the same flowers, as opposed to visiting multiple different flowers in a patch. Sampling was done in Sweden with reared colonies of bees in an open field. Bees were individually marked and ID'd and left to pollinate for 5 days at a time. After each period pollen was removed from the bees bodies and collected in jars. Machine learning was used to identify pollen samples from specific flowers which were identified in the field. After the program was run, individual pollen samples from ID'd bees were added to a csv file, noting each bee and where their pollen came from, as well as how much (in g) of pollen they had extracted from each flower species per trip. 
 
 First, let's call our data!
 ```{r csv, include=FALSE}
