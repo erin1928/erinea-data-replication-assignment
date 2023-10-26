@@ -74,40 +74,7 @@ mean(Pulmonaria_Group)
 mean(Laburnum)
 mean(Phacelia)
 ```
-
-```{r calculating proportions, include=FALSE}
-total_species_count <- (mean(Phacelia) + mean(Laburnum) + mean(Pulmonaria_Group) + mean(Aesculus) + mean(Cytisus) + mean(Papaver) + mean(Prunus_Group_B) + mean(Salix) + mean(Lonicera) + mean(Acer) + mean(Lamium) + mean(Brassicaceae) + mean(Prunus))
-total_species_count
-percentage_Phacelia<- (mean(Phacelia) / total_species_count)
-percentage_Phacelia
-percentage_Laburnum <- (mean(Laburnum) / total_species_count)
-percentage_Laburnum
-percentage_Pulmonaria_Group <- (mean(Pulmonaria_Group) / total_species_count)
-percentage_Pulmonaria_Group
-percentage_Aesculus <- (mean(Aesculus) / total_species_count)
-percentage_Aesculus
-percentage_Trifolium_repens <- (mean(Trifolium_repens) / total_species_count)
-percentage_Trifolium_repens
-percentage_Cytisus <- (mean(Cytisus) / total_species_count)
-percentage_Cytisus
-percentage_Papaver <- (mean(Papaver) / total_species_count)
-percentage_Papaver
-percentage_Prunus_Group_B <- (mean(Prunus_Group_B) / total_species_count)
-percentage_Prunus_Group_B
-percentage_Salix <- (mean(Salix) / total_species_count)
-percentage_Salix
-percentage_Lonicera <- (mean(Lonicera) / total_species_count)
-percentage_Lonicera
-percentage_Acer <- (mean(Acer) / total_species_count)
-percentage_Acer
-percentage_Lamium <- (mean(Lamium) / total_species_count)
-percentage_Lamium
-percentage_Brassicaceae <- (mean(Brassicaceae) / total_species_count)
-percentage_Brassicaceae
-percentage_Prunus <- (mean(Prunus) / total_species_count)
-percentage_Prunus
-```
-
+Now we are going to start plotting our figure. First I am setting a character vecotr "means" that is comprised of all of the means calculated in the first step. This will allow me to call my "means" easily and quickly when I code my bar chart. Next I'm setting a character vector of flower species "Flower_species" for the same reason. This will allow me to call all of the species on the x-axis using the names.arg() argument later on. Finally I am importing a package to allow me to assign colors to my bars to distinguish species visually.
 ```{r bar chart, include=TRUE}
 #setting a common numerical value to pull from in the y axis
 means <- c(mean(Prunus), mean(Brassicaceae), mean(Lamium), mean(Acer), mean(Lonicera), mean(Salix), mean(Prunus_Group_B), mean(Papaver), mean(Cytisus), mean(Trifolium_repens), mean(Aesculus), mean(Pulmonaria_Group), mean(Laburnum), mean(Phacelia))
@@ -122,4 +89,51 @@ barplot(means, ylim = c(0.00, 0.20), names.arg = Flower_species, las = 2, space 
 # las = 2 moves the x-axis labels vertical
 ```
 
-![Original Chart](/Users/erin/desktop/Original Chart.png)
+![Original Chart](Original Chart.png)
+
+In the paper, the researchers ran a Jaccard similarity test on a scale of 0 to 1. Jaccard similarity of 0 means the variables had no overlap, and 1 means the variables had extreme overlap. I ran one of the similarity tests between Pollen sample and colony ID and got that there was no overlap between the colony the bees were a part of and the pollen they sampled.
+```{r Jaccard pollen similarity, include=TRUE}
+jaccard <- function(a, b) {
+    intersection = length(intersect(a, b))
+    union = length(a) + length(b) - intersection
+    return (intersection/union)
+}
+colony <- (bee_data$coln)
+pollen.sample <- (bee_data$filn)
+jaccard(a,b)
+```
+
+```{r LMM, include=TRUE}
+colony <- (bee_data$coln) #colony the sample came from
+pollen.sample <- (bee_data$filn) #each pollen sample
+library(lme4)
+lmer(data = bee_data, pollen.sample ~ colony + (1 | colony))
+summary(lme)
+```
+
+```{r LMM, include=TRUE}
+bees <- (bee_data$bbid)
+lmer(pollen.sample ~ colony + (colony | bees), bee_data)
+```
+The author's stated that the pollen from the Prunus group of flowers was the most pollinated overall, with the total percentage of pollen samples from these flowers equaling 20%. To test this I first named all the means of each flower species to be able to use them in a later calculation. Then, I added all of these called means together to get the whole number of pollen samples from each species together. Then, I divided that total means number just calculated by the mean of the prunus group flowers and multiplied by 100%. My final output was 22.07%, rounding down to 20%, the same as what our author's stated.
+```{r percentage Brassicaceae, include=TRUE}
+mean_Prunus <- mean(Prunus)
+mean_Brassicaceae <- mean(Brassicaceae)
+mean_Lamium <- mean(Lamium)
+mean_Acer <- mean(Acer)
+mean_Lonicera <- mean(Lonicera)
+mean_Salix <- mean(Salix)
+mean_Prunus_Group_B <- mean(Prunus_Group_B)
+mean_Papaver <- mean(Papaver)
+mean_Cytisus <- mean(Cytisus)
+mean_Trifolium_repens <- mean(Trifolium_repens)
+mean_Aesculus <- mean(Aesculus)
+mean_Pulmonaria_Group <- mean(Pulmonaria_Group)
+mean_Laburnum <- mean(Laburnum)
+mean_Phacelia <- mean(Phacelia)
+
+total_means <- (mean_Prunus + mean_Brassicaceae + mean_Lamium + mean_Acer + mean_Lonicera + mean_Salix + mean_Prunus_Group_B + mean_Papaver + mean_Cytisus + mean_Trifolium_repens + mean_Aesculus + mean_Pulmonaria_Group + mean_Laburnum + mean_Phacelia)
+total_means
+percent_prunus_group <- (mean_Prunus/total_means)*100
+percent_prunus_group
+```
