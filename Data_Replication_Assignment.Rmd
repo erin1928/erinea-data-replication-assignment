@@ -109,7 +109,7 @@ lmer(pollen.sample ~ colony + (colony | bees), bee_data)
 ```
 The authors stated that the pollen from the Prunus group of flowers was the most pollinated overall, with the total percentage of pollen samples from these flowers equaling 20%. To test this I first named all the means of each flower species to be able to use them in a later calculation. Then, I added all of these called means together to get the whole number of pollen samples from each species together. Finally, I divided that total means number just calculated by the mean of the Prunus group flowers and multiplied by 100%. My final output was 22.07%, rounding down to 20%, the same as what our author's stated! (It would be nice to see a little bit more accuracy from them though!)
 ```{r percentage Prunus Group, include=TRUE}
-mean_Prunus <- mean(Prunus)
+mean_Prunus <- mean(Prunus) #naming the numerical outputs for later calculation
 mean_Brassicaceae <- mean(Brassicaceae)
 mean_Lamium <- mean(Lamium)
 mean_Acer <- mean(Acer)
