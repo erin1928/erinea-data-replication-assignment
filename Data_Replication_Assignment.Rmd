@@ -107,7 +107,7 @@ summary(lme)
 bees <- (bee_data$bbid)
 lmer(pollen.sample ~ colony + (colony | bees), bee_data)
 ```
-The authors stated that the pollen from the Prunus group of flowers was the most pollinated overall, with the total percentage of pollen samples from these flowers equaling 20%. To test this I first named all the means of each flower species to be able to use them in a later calculation. Then, I added all of these called means together to get the whole number of pollen samples from each species together. Finally, I divided that total means number just calculated by the mean of the Prunus group flowers and multiplied by 100%. My final output was 22.07%, rounding down to 20%, the same as what our author's stated! (It would be nice to see a little bit more accuracy from them though!)
+The authors stated that the pollen from the Prunus group of flowers was the most pollinated overall, with the total percentage of pollen samples from these flowers equaling 20%. To test this I first named all the means of each flower species to be able to use them in a later calculation. Then, I added all of these called means together to get the whole number of pollen samples from each species together. Finally, I divided that total means number just calculated by the mean of the Prunus group flowers and multiplied by 100%. 
 ```{r percentage Prunus Group, include=TRUE}
 mean_Prunus <- mean(Prunus) #naming the numerical outputs for later calculation
 mean_Brassicaceae <- mean(Brassicaceae)
@@ -124,8 +124,9 @@ mean_Pulmonaria_Group <- mean(Pulmonaria_Group)
 mean_Laburnum <- mean(Laburnum)
 mean_Phacelia <- mean(Phacelia)
 
-total_means <- (mean_Prunus + mean_Brassicaceae + mean_Lamium + mean_Acer + mean_Lonicera + mean_Salix + mean_Prunus_Group_B + mean_Papaver + mean_Cytisus + mean_Trifolium_repens + mean_Aesculus + mean_Pulmonaria_Group + mean_Laburnum + mean_Phacelia)
+total_means <- (mean_Prunus + mean_Brassicaceae + mean_Lamium + mean_Acer + mean_Lonicera + mean_Salix + mean_Prunus_Group_B + mean_Papaver + mean_Cytisus + mean_Trifolium_repens + mean_Aesculus + mean_Pulmonaria_Group + mean_Laburnum + mean_Phacelia) #Adding up all the numerical outputs to allow for an easy calculation in the next step
 total_means
-percent_prunus_group <- (mean_Prunus/total_means)*100
+percent_prunus_group <- (mean_Prunus/total_means)*100 #Calculating the percentage of our desired species by dividing by the whole and multiplying by 100
 percent_prunus_group
 ```
+My final output was 22.07%, rounding down to 20%, the same as what our author's stated! (It would be nice to see a little bit more accuracy from them though!)
