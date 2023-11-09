@@ -9,7 +9,7 @@ output: html_document
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-My study is testing the theory that bees prefer to frequent the same flowers, as opposed to visiting multiple different flowers in a patch. Sampling was done in Sweden with reared colonies of bees in an open field. Bees were individually marked and ID'd and left to pollinate for 5 days at a time. After each period pollen was removed from the bees bodies and collected in jars. Machine learning was used to identify pollen samples from specific flowers which were identified in the field. After the program was run, individual pollen samples from ID'd bees were added to a csv file, noting each bee and where their pollen came from, as well as how much (in g) of pollen they had extracted from each flower species per trip. 
+My study is testing the theory that bees prefer to frequent the same flowers, as opposed to visiting multiple different flowers in a patch. Sampling was done in Sweden with reared colonies of bees in an open field. Bees were individually marked and tagged and left to pollinate for 5 days at a time. After each period pollen was removed from the bees bodies and collected in jars. Machine learning was used to identify pollen samples from specific flowers which were identified in the field. After the program was run, individual pollen samples from tagged bees were added to a csv file, noting each bee and where their pollen came from, as well as how much (in g) of pollen they had extracted from each flower species per trip. 
 
 First, let's call our data!
 ```{r csv, include=FALSE}
@@ -83,21 +83,24 @@ barplot(means, ylim = c(0.00, 0.20), names.arg = Flower_species, las = 2, space 
 To compare, let's pull the original chart made by the authors. Looks pretty good!
 ![Original Chart](Original Chart.png)
 
-In the paper, the researchers ran a Jaccard similarity test on a scale of 0 to 1. Jaccard similarity of 0 means the variables had no overlap, and 1 means the variables had extreme overlap. I ran one of the similarity tests between Pollen sample and colony ID and got that there was no overlap between the colony the bees were a part of and the pollen they sampled, meaning that these two variables do not affect each other, and instead, allow us to conclude that something else (other than the colony bees come from) is what's causing this constancy. And indeed, the authors proposed that colony DISTANCE is what is primarily affecting the return to the same flowers.
+In the paper, the researchers ran a Jaccard similarity test on a scale of 0 to 1. Jaccard similarity of 0 means the variables had no overlap, and 1 means the variables had extreme overlap. I ran one of the similarity tests between pollen sample and colony ID and got that there was no overlap between the colony the bees were a part of and the pollen they sampled, meaning that these two variables do not affect each other, and instead, allow us to conclude that something else (other than the colony bees come from) is what's causing this constancy. And indeed, the authors proposed that colony DISTANCE is what is primarily affecting the return to the same flowers.
 ```{r Jaccard pollen similarity, include=TRUE}
-jaccard <- function(a, b) {
-    intersection = length(intersect(a, b))
-    union = length(a) + length(b) - intersection
-    return (intersection/union)
-}
 colony <- (bee_data$coln)
 pollen.sample <- (bee_data$filn)
-jaccard(a,b)
+jaccard <- function(colony, pollen.sample) {
+    intersection = length(intersect(colony, pollen.sample))
+    union = length(colony) + length(pollen.sample) - intersection
+    return (intersection/union)
+}
+jaccard(colony,pollen.sample)
 ```
 
+Now let's run a mixed effects model to try and understand the relationship between our patch (aka distance, as each patch is a different distance from the colony) qnd pollen type
+
+Okay i need to find a way to call all of the columns of flowers in one variable. maybe use "means" for all of them? however when i tried this the levels were wrong
 ```{r LMM, include=TRUE}
 colony <- (bee_data$coln) #colony the sample came from
-pollen.sample <- (bee_data$filn) #each pollen sample
+pollen.sample <- (bee_data$filn) #each pollen sample, with the weights from every flower
 library(lme4)
 lmer(data = bee_data, pollen.sample ~ colony + (1 | colony))
 summary(lme)
