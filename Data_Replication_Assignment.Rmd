@@ -100,6 +100,17 @@ Now let's run a mixed effects model to try and understand the relationship betwe
 Okay i need to find a way to call all of the columns of flowers in one variable. maybe use "means" for all of them? however when i tried this the levels were wrong
 
 There are 3 patches, how do i synthesize them into a numerical input R is willing to work with?
+
+```{r factors, include=TRUE}
+# creating the factor variable
+bee_data$coln <- factor(bee_data$coln)
+is.factor(bee_data$coln)
+```
+```{r factors, include=TRUE}
+bee_data$coln[1:730]
+summary(lm(means ~ coln, data = bee_data))
+```
+
 ```{r LMM, include=TRUE}
 colony <- (bee_data$coln) #colony the sample came from
 pollen.sample <- (bee_data$filn) #each pollen sample, with the weights from every flower
