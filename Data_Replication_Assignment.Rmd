@@ -95,33 +95,28 @@ jaccard <- function(colony, pollen.sample) {
 jaccard(colony,pollen.sample)
 ```
 
-Now let's run a mixed effects model to try and understand the relationship between our patch (aka distance, as each patch is a different distance from the colony) qnd pollen type
+```{r trial, include=TRUE}
+dates <- summary(bee_data$dat)
+dates
+length(dates)
+length(colony)
+```
 
-Okay i need to find a way to call all of the columns of flowers in one variable. maybe use "means" for all of them? however when i tried this the levels were wrong
+```{r trial, include=TRUE}
+glm <- glm(data = bee_data, dates ~ colony, family = "binomial")
+```
+Now let's run a mixed effects model to try and understand the relationship between our patch (aka distance, as each patch is a different distance from the colony) and pollen type
 
-There are 3 patches, how do i synthesize them into a numerical input R is willing to work with?
 
 ```{r factors, include=TRUE}
 # creating the factor variable
 bee_data$coln <- factor(bee_data$coln)
 is.factor(bee_data$coln)
 ```
-```{r factors, include=TRUE}
-bee_data$coln[1:730]
-summary(lm(means ~ coln, data = bee_data))
-```
-
-```{r LMM, include=TRUE}
-colony <- (bee_data$coln) #colony the sample came from
-pollen.sample <- (bee_data$filn) #each pollen sample, with the weights from every flower
-library(lme4)
-lmer(data = bee_data, pollen.sample ~ colony + (1 | colony))
-summary(lme)
-```
 
 ```{r LMM, include=TRUE}
 bees <- (bee_data$bbid)
-lmer(pollen.sample ~ colony + (colony | bees), bee_data)
+lmer(dates ~ colony + (colony | bees), bee_data)
 ```
 The authors stated that the pollen from the Prunus group of flowers was the most pollinated overall, with the total percentage of pollen samples from these flowers equaling 20%. To test this I first named all the means of each flower species to be able to use them in a later calculation. Then, I added all of these called means together to get the whole number of pollen samples from each species together. Finally, I divided that total means number just calculated by the mean of the Prunus group flowers and multiplied by 100%. 
 ```{r percentage Prunus Group, include=TRUE}
