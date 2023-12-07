@@ -94,11 +94,11 @@ jaccard <- function(colony, pollen.sample) {
 }
 jaccard(colony,pollen.sample)
 ```
-
+In the paper, researchers compare the dates in which samples are collected and the colonies bees are from. In order to begin this process let's create a "dates" vector using the summary function to isolate it form our data set.
 ```{r trial, include=TRUE}
-dates <- summary(bee_data$dat)
+dates <- summary(bee_data$dat) #using summary function to call and name our dates
 dates
-length(dates)
+length(dates) #looking at the lengths of dates
 length(colony)
 ```
 
