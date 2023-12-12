@@ -95,18 +95,19 @@ jaccard <- function(colony, pollen.sample) {
 jaccard(colony,pollen.sample)
 ```
 In the paper, researchers compare the dates in which samples are collected and the colonies bees are from. In order to begin this process let's create a "dates" vector using the summary function to isolate it form our data set.
-```{r trial, include=TRUE}
+```{r dates, include=TRUE}
 dates <- summary(bee_data$dat) #using summary function to call and name our dates
 dates
 length(dates) #looking at the lengths of dates
 length(colony)
 ```
-
-```{r trial, include=TRUE}
-glm <- glm(data = bee_data, dates ~ colony, family = "binomial")
-summary(glm)
+Now, using a generalized linear mofel we can compare the date of collection to the colony the bee came from.
+```{r GLM, include=TRUE}
+glm <- glm(data = bee_data, dates ~ colony, family = "binomial") #create the glm
+summary(glm) #call the results
 ```
-Now let's run a mixed effects model to try and understand the relationship between our patch (aka distance, as each patch is a different distance from the colony) and pollen type
+According to the paper, "a preliminary analysis showed that the variance explained by the colony ID and area was numerically zero, and hence was not included as random factors." Here, our p-value column is much higher than 0.05, and we can confirm this interaction is not statistically significant.
+
 
 The authors stated that the pollen from the Prunus group of flowers was the most pollinated overall, with the total percentage of pollen samples from these flowers equaling 20%. To test this I first named all the means of each flower species to be able to use them in a later calculation. Then, I added all of these called means together to get the whole number of pollen samples from each species together. Finally, I divided that total means number just calculated by the mean of the Prunus group flowers and multiplied by 100%. 
 ```{r percentage Prunus Group, include=TRUE}
