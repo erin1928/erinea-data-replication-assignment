@@ -12,41 +12,26 @@ knitr::opts_chunk$set(echo = TRUE)
 My study is testing the theory that bees prefer to frequent the same flowers, as opposed to visiting multiple different flowers in a patch. Sampling was done in Sweden with reared colonies of bees in an open field. Bees were individually marked and tagged and left to pollinate for 5 days at a time. After each period pollen was removed from the bees bodies and collected in jars. Machine learning was used to identify pollen samples from specific flowers which were identified in the field. After the program was run, individual pollen samples from tagged bees were added to a csv file, noting each bee and where their pollen came from, as well as how much (in g) of pollen they had extracted from each flower species per trip. 
 
 First, let's call our data!
-```{r csv, include=FALSE}
+```{r csv, include=TRUE}
 bee_data <- read.csv("bee_data.csv", sep = ',', header = TRUE, stringsAsFactors = TRUE)
-bee_data
 head(bee_data)
 ```
 Now, we must identify and name all of the relevant columns within the csv. Here I am calling the columns of flower species that pollen was taken from, and giving them an easier and more memorable name to work with throughout the replication assignment.
-```{r calling rows, include=FALSE}
+```{r calling rows, include = TRUE}
 Prunus <- (bee_data$P_Prunus.group)
-Prunus
 Brassicaceae <- (bee_data$P_Brassicaceae)
-Brassicaceae
 Lamium <- (bee_data$P_Lamium)
-Lamium
 Acer <- (bee_data$P_Acer)
-Acer
 Lonicera <- (bee_data$P_Lonicera)
-Lonicera
 Salix <- (bee_data$P_Salix)
-Salix
 Prunus_Group_B <- sample(bee_data$P_Prunus.groupB)
-Prunus_Group_B
 Papaver <- (bee_data$P_Papaver)
-Papaver
 Cytisus <- (bee_data$P_Cytisus)
-Cytisus
 Trifolium_repens <- (bee_data$P_Trifolium.repens.group)
-Trifolium_repens
 Aesculus <- (bee_data$P_Aesculus)
-Aesculus
 Pulmonaria_Group <- (bee_data$P_Pulmonaria.group)
-Pulmonaria_Group
 Laburnum <- (bee_data$P_Laburnum)
-Laburnum
 Phacelia <- (bee_data$P_Phacelia)
-Phacelia
 ```
 
 In order to replicate our first figure, the mean weight (in grams) of each pollen type needs to be calculated. By using the mean() function I am directly calculating the averages of each column that I assigned in the previous step.
@@ -94,19 +79,21 @@ jaccard <- function(colony, pollen.sample) {
 }
 jaccard(colony,pollen.sample)
 ```
-In the paper, researchers compare the dates in which samples are collected and the colonies bees are from. In order to begin this process let's create a "dates" vector using the summary function to isolate it form our data set.
-```{r dates, include=TRUE}
-dates <- summary(bee_data$dat) #using summary function to call and name our dates
-dates
-length(dates) #looking at the lengths of dates
-length(colony)
-```
-Now, using a generalized linear mofel we can compare the date of collection to the colony the bee came from.
-```{r GLM, include=TRUE}
-glm <- glm(data = bee_data, dates ~ colony, family = "binomial") #create the glm
+In the paper, researchers compare the distance from oil seed rape fields to flower constancy using a GLMM. However, all non-descriptive statistics required the running of a complex Jaccard similarity test using named Jaccard distances via an inverted Jaccard similarity test. I was unable to replicate this statistic because of the in-depth nature of naming these distances, as well as running a statistic we have not covered and I was unable to effectively teach myself. Since I was unable to come up with the "flower constancy" values I was unable to run any of the inferential analyses done in this paper. Instead, I ran and interpreted an independent analysis with the available data. 
+
+I decided to run a GLMM (used in the paper) to compare the date of sample collection to the amount of Prunus Group B flower pollen in the sample per date. First, I made sure the two variables I was working with were of the same length (a problem I was having when trying to replicate the original GLM) using the length function.
+
+Then, I set up my glm running the date collected to the species of interest.
+```{r date, include=TRUE}
+date <-bee_data$dat
+length(date) #looking at the lengths of dates
+length(Prunus_Group_B)#looking at the lengths of the desired flower species
+glm <- glm(data = bee_data, date ~ Prunus_Group_B, family = "binomial") #create the glm
 summary(glm) #call the results
 ```
-According to the paper, "a preliminary analysis showed that the variance explained by the colony ID and area was numerically zero, and hence was not included as random factors." Here, our p-value column is much higher than 0.05, and we can confirm this interaction is not statistically significant.
+
+
+The GLM that I ran was also not statistically significant with a p-value of 0.293 and shows no correlation between sample date and Prunus flower species.
 
 
 The authors stated that the pollen from the Prunus group of flowers was the most pollinated overall, with the total percentage of pollen samples from these flowers equaling 20%. To test this I first named all the means of each flower species to be able to use them in a later calculation. Then, I added all of these called means together to get the whole number of pollen samples from each species together. Finally, I divided that total means number just calculated by the mean of the Prunus group flowers and multiplied by 100%. 
