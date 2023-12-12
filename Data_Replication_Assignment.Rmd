@@ -2,14 +2,26 @@
 title: "Data Replication"
 author: "Erin Anderson"
 date: "`r Sys.Date()`"
-output: html_document
+output: 
+  prettydoc::html_pretty:
+    theme: cayman
+    highight: github
+    toc: true
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
+## Introduction
 
 My study is testing the theory that bees prefer to frequent the same flowers, as opposed to visiting multiple different flowers in a patch. Sampling was done in Sweden with reared colonies of bees in an open field. Bees were individually marked and tagged and left to pollinate for 5 days at a time. After each period pollen was removed from the bees bodies and collected in jars. Machine learning was used to identify pollen samples from specific flowers which were identified in the field. After the program was run, individual pollen samples from tagged bees were added to a csv file, noting each bee and where their pollen came from, as well as how much (in g) of pollen they had extracted from each flower species per trip. 
+
+For this assignment I am going to replicate a bar graph demonstrating the average amount (in grams) of pollen for each flower type collected across all collection days. Then, I am going to run a Jaccard similarity test to compare colony and pollen sample, to reject the idea that colony impacts pollen type, an idea which allows the researchers to expand their results to conclude dustance from oilseed rape is most impactful on flower pollen type. In the paper "flower constancy" is a variable that is repeatedly used and very tricky to calculate, ultamately I was unable to replicate this necessary statistic. Instead, I wanted to continue to work to replicate the type of regressions being run so I independelty run a GLM of flower species and date collection to try my best to mirror their GLM of time between collections and flower constancy.
+
+Finally, I will replicate a descriptive statistic describing the percentage of the most widely collected pollen type and confirm researcher's punlished statistics.
+
+## Figure Replication 
+
 
 First, let's call our data!
 ```{r csv, include=TRUE}
@@ -68,6 +80,9 @@ barplot(means, ylim = c(0.00, 0.20), names.arg = Flower_species, las = 2, space 
 To compare, let's pull the original chart made by the authors. Looks pretty good!
 ![Original Chart](Original Chart.png)
 
+## Jaccard Test
+
+
 In the paper, the researchers ran a Jaccard similarity test on a scale of 0 to 1. Jaccard similarity of 0 means the variables had no overlap, and 1 means the variables had extreme overlap. I ran one of the similarity tests between pollen sample and colony ID and got that there was no overlap between the colony the bees were a part of and the pollen they sampled, meaning that these two variables do not affect each other, and instead, allow us to conclude that something else (other than the colony bees come from) is what's causing this constancy. And indeed, the authors proposed that colony DISTANCE is what is primarily affecting the return to the same flowers.
 ```{r Jaccard pollen similarity, include=TRUE}
 colony <- (bee_data$coln)
@@ -79,6 +94,9 @@ jaccard <- function(colony, pollen.sample) {
 }
 jaccard(colony,pollen.sample)
 ```
+
+## Additional Inferential Analysis
+
 In the paper, researchers compare the distance from oil seed rape fields to flower constancy using a GLMM. However, all non-descriptive statistics required the running of a complex Jaccard similarity test using named Jaccard distances via an inverted Jaccard similarity test. I was unable to replicate this statistic because of the in-depth nature of naming these distances, as well as running a statistic we have not covered and I was unable to effectively teach myself. Since I was unable to come up with the "flower constancy" values I was unable to run any of the inferential analyses done in this paper. Instead, I ran and interpreted an independent analysis with the available data. 
 
 I decided to run a GLMM (used in the paper) to compare the date of sample collection to the amount of Prunus Group B flower pollen in the sample per date. First, I made sure the two variables I was working with were of the same length (a problem I was having when trying to replicate the original GLM) using the length function.
@@ -94,6 +112,9 @@ summary(glm) #call the results
 
 
 The GLM that I ran was also not statistically significant with a p-value of 0.293 and shows no correlation between sample date and Prunus flower species.
+
+
+## Descriptive Statistic 
 
 
 The authors stated that the pollen from the Prunus group of flowers was the most pollinated overall, with the total percentage of pollen samples from these flowers equaling 20%. To test this I first named all the means of each flower species to be able to use them in a later calculation. Then, I added all of these called means together to get the whole number of pollen samples from each species together. Finally, I divided that total means number just calculated by the mean of the Prunus group flowers and multiplied by 100%. 
